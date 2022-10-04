@@ -218,7 +218,7 @@ let g:mkdp_open_ip = ''
 " valid: `/path/with\ space/xxx`
 " invalid: `/path/with\\ space/xxx`
 " default: ''
-let g:mkdp_browser = 'Vivaldi'
+let g:mkdp_browser = ''
 
 " set to 1, echo preview page url in command line when open preview page
 " default is 0
