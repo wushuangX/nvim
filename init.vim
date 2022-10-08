@@ -287,6 +287,7 @@ let g:mkdp_theme = 'dark'
 nmap <Leader>m <Plug>(coc-markmap-create)
 " Create markmap from the selected lines
 vmap <Leader>m <Plug>(coc-markmap-create-v)
+command! -range=% Markmap CocCommand markmap.create <line1> <line2>
 
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1 
