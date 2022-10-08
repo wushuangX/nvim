@@ -3,6 +3,7 @@ set nu
 set rnu
 set cursorline
 set scrolloff=5
+set mouse=
 autocmd vimenter * nested colorscheme gruvbox
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 let g:airline_theme='deus'
