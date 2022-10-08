@@ -7,7 +7,7 @@ set mouse=
 autocmd vimenter * nested colorscheme gruvbox
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 let g:airline_theme='deus'
-let g:coc_global_extensions = ['coc-webview', 'coc-python',  'coc-pyright', 'coc-translator', 'coc-snippets', 'coc-prettier', 'coc-highlight', 'coc-git', 'coc-explorer', 'coc-actions', 'coc-julia', 'coc-json', 'coc-markmap', 'coc-sumneko-lua', 'coc-stylua', 'coc-clangd']
+let g:coc_global_extensions = ['coc-webview', 'coc-python',  'coc-pyright', 'coc-translator', 'coc-snippets', 'coc-prettier', 'coc-highlight', 'coc-git', 'coc-explorer', 'coc-actions', 'coc-julia', 'coc-json', 'coc-markmap', 'coc-sumneko-lua', 'coc-stylua', 'coc-clangd', 'coc-rust-analyzer']
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -23,6 +23,10 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -77,10 +81,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
