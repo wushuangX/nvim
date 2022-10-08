@@ -7,7 +7,7 @@ set mouse=
 autocmd vimenter * nested colorscheme gruvbox
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 let g:airline_theme='deus'
-let g:coc_global_extensions = ['coc-webview', 'coc-python',  'coc-pyright', 'coc-translator', 'coc-snippets', 'coc-prettier', 'coc-highlight', 'coc-git', 'coc-explorer', 'coc-actions', 'coc-julia', 'coc-json']
+let g:coc_global_extensions = ['coc-webview', 'coc-python',  'coc-pyright', 'coc-translator', 'coc-snippets', 'coc-prettier', 'coc-highlight', 'coc-git', 'coc-explorer', 'coc-actions', 'coc-julia', 'coc-json', 'coc-markmap', 'coc-sumneko-lua', 'coc-stylua', 'coc-clangd']
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -171,6 +171,7 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
+" markdown
 " markdown自动隐藏关闭
 let g:vim_markdown_conceal = 0
 " table自动插入
@@ -282,6 +283,10 @@ let g:mkdp_filetypes = ['markdown']
 " By default the theme is define according to the preferences of the system
 let g:mkdp_theme = 'dark'
 
+" Create markmap from the whole file
+nmap <Leader>m <Plug>(coc-markmap-create)
+" Create markmap from the selected lines
+vmap <Leader>m <Plug>(coc-markmap-create-v)
 
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1 
@@ -448,6 +453,7 @@ let g:jukit_layout = {
 " "   - path to cutycapt executable
 " let g:jukit_ueberzug_imagemagick_cmd = 'convert'
 " "   - path to imagemagick (`convert` command) executable
+
 
 call plug#begin() 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
