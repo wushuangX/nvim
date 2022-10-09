@@ -24,6 +24,9 @@ if (empty($TMUX))
   endif
 endif
 
+" 显示顶栏，来自vim.airline
+let g:airline#extensions#tabline#enabled = 1
+
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -172,8 +175,11 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 " markdown
-" markdown自动隐藏关闭
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1" markdown自动隐藏关闭
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_math = 1
 " table自动插入
 let g:table_mode_corner='|'
 " markdown图片粘贴插件设置
