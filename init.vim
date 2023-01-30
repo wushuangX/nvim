@@ -26,6 +26,8 @@ endif
 " 显示顶栏，来自vim.airline
 let g:airline#extensions#tabline#enabled = 1
 
+nnoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
+inoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -523,7 +525,7 @@ vmap <Leader>r <Plug>(coc-translator-rv)
 Plug 'junegunn/vim-easy-align'
 
 " python代码格式化
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
 
 " 提供炫酷的顶条
 Plug 'mg979/vim-xtabline'
