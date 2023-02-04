@@ -3,6 +3,7 @@ set nu
 set rnu
 set cursorline
 set mouse=
+set termguicolors
 autocmd vimenter * nested colorscheme gruvbox
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 let g:airline_theme='deus'
@@ -22,6 +23,9 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+let g:python2_host_prog = '/home/yu/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/yu/.pyenv/versions/neovim3/bin/python'
 
 " 显示顶栏，来自vim.airline
 let g:airline#extensions#tabline#enabled = 1
@@ -525,6 +529,9 @@ Plug 'junegunn/vim-easy-align'
 " python代码格式化
 Plug 'psf/black', { 'branch': 'stable' }
 
+" python doc generate
+Plug 'heavenshell/vim-pydocstring'
+
 " 提供炫酷的顶条
 Plug 'mg979/vim-xtabline'
 
@@ -536,4 +543,8 @@ Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'zsh install.sh'
 Plug 'luk400/vim-jukit', {'for': ['julia', 'python', 'json']}
 " 多语言的高亮等
 Plug 'sheerun/vim-polyglot'
+" Git相关
+Plug 'tpope/vim-fugitive'
+" Tagbar
+Plug 'majutsushi/tagbar'
 call plug#end()
