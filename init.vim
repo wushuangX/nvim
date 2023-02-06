@@ -24,6 +24,7 @@ if (empty($TMUX))
   endif
 endif
 
+" pyenv的配置
 let g:python2_host_prog = '/home/yu/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/yu/.pyenv/versions/neovim3/bin/python'
 
@@ -35,6 +36,11 @@ inoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" ga增加python注释
+nmap <silent> ga <Plug>(coc-codeaction-line)
+xmap <silent> ga <Plug>(coc-codeaction-selected)
+nmap <silent> gA <Plug>(coc-codeaction)
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
