@@ -1,0 +1,11 @@
+{
+  "dressing.nvim": { "branch": "master", "commit": "db716a0f1279f79a886c0e0b6ab3c3d5ffdb42fe" },
+  "gruvbox": { "branch": "master", "commit": "bf2885a95efdad7bd5e4794dd0213917770d79b7" },
+  "lazy.nvim": { "branch": "main", "commit": "4917222c7e5c924bf7471b72a5e2d3e661530b40" },
+  "neo-tree.nvim": { "branch": "v2.x", "commit": "8238865e1d9c61f1a260c290653f2c419503e0a9" },
+  "neoconf.nvim": { "branch": "main", "commit": "a514065e361e123b04bf587d4d5980bf3965d8d6" },
+  "neodev.nvim": { "branch": "main", "commit": "e70715e5c914a97efb9bcc1cd14671afd4a3405d" },
+  "vim-airline": { "branch": "master", "commit": "038e3a6ca59f11b3bb6a94087c1792322d1a1d5c" },
+  "vim-airline-themes": { "branch": "master", "commit": "dd81554c2231e438f6d0e8056ea38fd0e80ac02a" },
+  "which-key.nvim": { "branch": "main", "commit": "5224c261825263f46f6771f1b644cae33cd06995" }
+}
