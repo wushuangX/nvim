@@ -7,7 +7,7 @@ set termguicolors
 autocmd vimenter * nested colorscheme gruvbox
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 let g:airline_theme='deus'
-let g:coc_global_extensions = ['coc-webview', 'coc-pyright', 'coc-translator', 'coc-snippets', 'coc-prettier', 'coc-highlight', 'coc-git', 'coc-actions', 'coc-vimlsp', 'coc-julia', 'coc-json', 'coc-markmap', 'coc-sumneko-lua', 'coc-stylua', 'coc-clangd', 'coc-rust-analyzer', 'coc-vetur', 'coc-toml', 'coc-pydocstring']
+let g:coc_global_extensions = ['coc-webview', 'coc-pyright', 'coc-translator', 'coc-snippets', 'coc-prettier', 'coc-highlight', 'coc-git', 'coc-actions', 'coc-vimlsp', 'coc-julia', 'coc-json', 'coc-markmap', 'coc-sumneko-lua', 'coc-stylua', 'coc-clangd', 'coc-rust-analyzer', 'coc-toml', 'coc-pydocstring', '@yaegassy/coc-volar', '@yaegassy/coc-volar-tools']
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -187,10 +187,9 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 " markdown
 let g:tex_conceal = ""
-let g:vim_markdown_math = 1" markdown自动隐藏关闭
+let g:vim_markdown_math = 1 " markdown自动隐藏关闭
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_math = 1
 " table自动插入
 let g:table_mode_corner='|'
 " markdown图片粘贴插件设置

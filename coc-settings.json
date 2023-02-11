@@ -6,4 +6,5 @@
   "snippets.ultisnips.pythonPrompt": false,
   "pydocstring.doqPath": "/home/yu/.pyenv/shims/doq",
   "pydocstring.formatter": "google",
+  "coc.preferences.formatOnSave": true
 }
