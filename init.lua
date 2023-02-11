@@ -20,52 +20,20 @@ require("lazy").setup({
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
   "vim-airline/vim-airline",
-  "vim-airline/vim-airline-themes",
+  "vim-airline/vim-airline-themes",  -- 自动切换输入法
+  "h-hg/fcitx.nvim",
+  -- git集成
+  "lewis6991/gitsigns.nvim",
+  -- 模糊搜索
+  { "nvim-telescope/telescope.nvim", dependencies = {"nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "BurntSushi/ripgrep" ,"sharkdp/fd", "nvim-treesitter/nvim-treesitter"}},
+
   -- neotree文件树
   {
   "nvim-neo-tree/neo-tree.nvim",
-  cmd = "Neotree",
-  keys = {
-    {
-      "<leader>fe",
-      function()
-        require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-      end,
-      desc = "Explorer NeoTree (root dir)",
-    },
-    {
-      "<leader>fE",
-      function()
-        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-      end,
-      desc = "Explorer NeoTree (cwd)",
-    },
-    { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-    { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-  },
-  deactivate = function()
-    vim.cmd([[Neotree close]])
-  end,
-  init = function()
-    vim.g.neo_tree_remove_legacy_commands = 1
-    if vim.fn.argc() == 1 then
-      local stat = vim.loop.fs_stat(vim.fn.argv(0))
-      if stat and stat.type == "directory" then
-        require("neo-tree")
-      end
-    end
-  end,
-  opts = {
-    filesystem = {
-      bind_to_cwd = false,
-      follow_current_file = true,
-    },
-    window = {
-      mappings = {
-        ["<space>"] = "none",
-      },
-    },
-  },
+  dependencies= { 
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",},
 },
 {
     "nvim-neorg/neorg",
@@ -87,5 +55,7 @@ require("lazy").setup({
   "RRethy/vim-illuminate",
 -- UI美化
 { "stevearc/dressing.nvim", event = "VeryLazy" },
+  -- 修改nvim的通知栏，ui美化
+  "rcarriga/nvim-notify",
 })
 
