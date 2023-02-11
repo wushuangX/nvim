@@ -481,14 +481,12 @@ Plug 'airblade/vim-gitgutter'
 " 底栏
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" 多光标
-Plug 'terryma/vim-multiple-cursors'
-" 重复上一个命令
-Plug 'tpope/vim-repeat'
 " 代码注释反注释
 Plug 'preservim/nerdcommenter'
 " 高亮光标下单词
 Plug 'RRethy/vim-illuminate'
+" 自动切换输入法
+Plug 'h-hg/fcitx.nvim'
 "模糊文件搜索
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
