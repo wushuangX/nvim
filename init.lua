@@ -207,7 +207,9 @@ require("lazy").setup({
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
 	"vim-airline/vim-airline",
-	"vim-airline/vim-airline-themes", 
+	{"vim-airline/vim-airline-themes", config = function ()
+		vim.cmd([[AirlineTheme deus]])
+	end},
 	-- 自动切换输入法
 	"h-hg/fcitx.nvim",
 	-- git集成
@@ -233,9 +235,8 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 		},
 	},
+	-- 替换内容
 	{
-		"nvim-neorg/neorg",
-		-- lazy-load on filetype  {
 		"cshuaimin/ssr.nvim",
 		-- init is always executed during startup, but doesn't load the plugin yet.
 		init = function()
