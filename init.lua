@@ -24,6 +24,11 @@ require("lazy").setup({
 			vim.cmd([[colorscheme gruvbox]])
 		end,
 	},
+	-- 撤销树
+	{ "mbbill/undotree", config=function ()
+			vim.keymap.set({ "n" }, "<leader>u", [[:UndotreeToggle<CR><C-w><C-w>]])
+		end
+	},
 	-- 查看按键映射
 	{
 		"folke/which-key.nvim",
@@ -37,10 +42,25 @@ require("lazy").setup({
 			})
 		end,
 	},
+	-- 代码片段
+	"rafamadriz/friendly-snippets",
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
 	-- 动画插件
-	{ "echasnovski/mini.nvim", version = false },
+	{
+		"echasnovski/mini.nvim",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("mini.pairs").setup() --自动配对括号
+			require("mini.animate").setup()
+			require("mini.surround").setup()
+			require("mini.comment").setup()
+			require("mini.tabline").setup()
+			require("mini.indentscope").setup()
+		end,
+	},
+	--{ 'echasnovski/mini.pairs', version = "*" },
 	-- notice 美化
 	{
 		"folke/noice.nvim",
@@ -110,6 +130,55 @@ require("lazy").setup({
 		end,
 	},
 
+	-- treesitter高亮插件
+	{
+		"nvim-treesitter/nvim-treesitter",
+		version = false, -- last release is way too old and doesn't work on Windows
+		build = ":TSUpdate",
+		event = { "BufReadPost", "BufNewFile" },
+		keys = {
+			{ "<c-space>", desc = "Increment selection" },
+			{ "<bs>", desc = "Schrink selection", mode = "x" },
+		},
+		---@type TSConfig
+		opts = {
+			highlight = { enable = true },
+			indent = { enable = true },
+			context_commentstring = { enable = true, enable_autocmd = false },
+			ensure_installed = {
+				"bash",
+				"help",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"query",
+				"regex",
+				"tsx",
+				"typescript",
+				"vim",
+				"yaml",
+				"toml",
+				"julia",
+			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = "<nop>",
+					node_decremental = "<bs>",
+				},
+			},
+		},
+		---@param opts TSConfig
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
+		end,
+	},
 	-- 自动切换输入法
 	"h-hg/fcitx.nvim",
 	-- git集成
