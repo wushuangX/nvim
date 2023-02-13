@@ -32,6 +32,7 @@ vim.wo.colorcolumn = "80"
 -- 空格替代tab
 vim.o.expandtab = true
 vim.bo.expandtab = true
+vim.o.tabstop = 4
 -- 搜索大小写不敏感，除非包含大写
 vim.o.ignorecase = true
 vim.o.smartcase = true
