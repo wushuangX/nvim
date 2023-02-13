@@ -14,6 +14,53 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 -- 以上为安装lazy.nvim需要的
 
+-- utf8
+vim.g.encoding = "UTF-8"
+vim.o.fileencoding = "utf-8"
+-- jkhl 移动时光标周围保留8行
+vim.o.scrolloff = 5
+vim.o.sidescrolloff = 5
+-- 使用相对行号
+vim.wo.number = true
+vim.wo.relativenumber = true
+-- 高亮所在行
+vim.wo.cursorline = true
+-- 显示左侧图标指示列
+vim.wo.signcolumn = "yes"
+-- 右侧参考线，超过表示代码太长了，考虑换行
+vim.wo.colorcolumn = "80"
+-- 空格替代tab
+vim.o.expandtab = true
+vim.bo.expandtab = true
+-- 搜索大小写不敏感，除非包含大写
+vim.o.ignorecase = true
+vim.o.smartcase = true
+-- 搜索不要高亮
+vim.o.hlsearch = false
+-- 边输入边搜索
+vim.o.incsearch = true
+-- 当文件被外部程序修改时，自动加载
+vim.o.autoread = true
+vim.bo.autoread = true
+-- 允许隐藏被修改过的buffer
+vim.o.hidden = true
+-- 鼠标支持
+vim.o.mouse = ""
+-- smaller updatetime
+vim.o.updatetime = 300
+-- split window 从下边和右边出现
+vim.o.splitbelow = true
+vim.o.splitright = true
+-- 样式
+vim.o.background = "dark"
+vim.o.termguicolors = true
+vim.opt.termguicolors = true
+-- 永远显示 tabline
+vim.o.showtabline = 2
+-- python虚拟环境设置
+vim.g.python2_host_prog = "/home/yu/.pyenv/versions/neovim2/bin/python"
+vim.g.python3_host_prog = "/home/yu/.pyenv/versions/neovim3/bin/python"
+
 require("lazy").setup({
 	opts = { colorscheme = "gruvbox" },
 	{
@@ -25,9 +72,11 @@ require("lazy").setup({
 		end,
 	},
 	-- 撤销树
-	{ "mbbill/undotree", config=function ()
+	{
+		"mbbill/undotree",
+		config = function()
 			vim.keymap.set({ "n" }, "<leader>u", [[:UndotreeToggle<CR><C-w><C-w>]])
-		end
+		end,
 	},
 	-- 查看按键映射
 	{
@@ -50,7 +99,6 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.nvim",
 		version = "*",
-		event = "VeryLazy",
 		config = function()
 			require("mini.pairs").setup() --自动配对括号
 			require("mini.animate").setup()
@@ -58,6 +106,7 @@ require("lazy").setup({
 			require("mini.comment").setup()
 			require("mini.tabline").setup()
 			require("mini.indentscope").setup()
+			require("mini.move").setup()
 		end,
 	},
 	--{ 'echasnovski/mini.pairs', version = "*" },
@@ -136,6 +185,7 @@ require("lazy").setup({
 		version = false, -- last release is way too old and doesn't work on Windows
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
+		dependencies = { "p00f/nvim-ts-rainbow" },
 		keys = {
 			{ "<c-space>", desc = "Increment selection" },
 			{ "<bs>", desc = "Schrink selection", mode = "x" },
@@ -173,6 +223,14 @@ require("lazy").setup({
 					node_decremental = "<bs>",
 				},
 			},
+			rainbow = {
+				enable = true,
+				-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+				extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+				max_file_lines = nil, -- Do not enable for files with more than n lines, int
+				-- colors = {}, -- table of hex strings
+				-- termcolors = {} -- table of colour name strings
+			},
 		},
 		---@param opts TSConfig
 		config = function(_, opts)
@@ -189,10 +247,15 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
-			"BurntSushi/ripgrep",
-			"sharkdp/fd",
 			"nvim-treesitter/nvim-treesitter",
 		},
+		config = function()
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+		end,
 	},
 
 	-- neotree文件树
@@ -223,6 +286,23 @@ require("lazy").setup({
 		branch = "release",
 		config = function()
 			-- coc配置
+			-- coc插件列表
+			vim.g.coc_global_extensions = {
+				"coc-pyright",
+				"coc-translator",
+				"coc-prettier",
+				"coc-vimlsp",
+				"coc-julia",
+				"coc-json",
+				"coc-markmap",
+				"coc-sumneko-lua",
+				"coc-clangd",
+				"coc-rust-analyzer",
+				"coc-toml",
+				"coc-pydocstring",
+				"@yaegassy/coc-volar",
+				"@yaegassy/coc-volar-tools",
+			}
 			-- Some servers have issues with backup files, see #649
 			vim.opt.backup = false
 			vim.opt.writebackup = false
@@ -413,6 +493,9 @@ require("lazy").setup({
 			-- Resume latest coc list
 			keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
 			-- coc配置结束
+			-- Mappings for coc-translator
+			keyset("n", "<leader>t", "<Plug>(coc-translator-p)")
+			keyset("v", "<leader>t", "<Plug>(coc-translator-pv)")
 		end,
 	},
 	--高亮光标下边的单词
@@ -421,4 +504,31 @@ require("lazy").setup({
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	-- 修改nvim的通知栏，ui美化
 	"rcarriga/nvim-notify",
+	-- 自动替换两边的符号，例如括号等
+	-- "tpope/vim-surround",
+	-- Tagbar
+	{ "majutsushi/tagbar" },
+	-- Markdown支持
+	"plasticboy/vim-markdown",
+	{
+		"iamcco/markdown-preview.nvim",
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+		config = function()
+			vim.g.mkdp_auto_start = true
+			vim.g.mkdp_theme = "dark"
+		end,
+	},
+	"mzlogin/vim-markdown-toc",
+	"dhruvasagar/vim-table-mode",
+	{
+		"img-paste-devs/img-paste.vim",
+		config = function()
+			vim.g.mdip_imgdir = "pic"
+			vim.g.mdip_imgname = "image"
+			vim.keymap.set("n", "<C-p>", ":call mdip#MarkdownClipboardImage()<CR>")
+		end,
+	},
+	{ "gcmt/wildfire.vim" },
 })
