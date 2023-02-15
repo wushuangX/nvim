@@ -1,5 +1,6 @@
 if vim.g.vscode then
-	-- VSCode extension
+	vim.g.mapleader = "," -- make sure to set `mapleader` before lazy so your mappings are correct
+
 else
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not vim.loop.fs_stat(lazypath) then
@@ -709,5 +710,6 @@ else
 			end,
 		},
 		{ "github/copilot.vim" },
+        {"easymotion/vim-easymotion"},
 	})
 end
