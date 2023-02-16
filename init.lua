@@ -710,5 +710,6 @@ else
 		},
 		{ "github/copilot.vim" },
 		{ "easymotion/vim-easymotion" },
+		{ "JuliaEditorSupport/julia-vim", ft = "julia" },
 	})
 end
