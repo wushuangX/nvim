@@ -710,6 +710,10 @@ else
 		},
 		{ "github/copilot.vim" },
 		{ "easymotion/vim-easymotion" },
-		{ "JuliaEditorSupport/julia-vim", ft = "julia" },
+		-- { "JuliaEditorSupport/julia-vim", ft = "julia" , lazy = true},
+        {"zzhirong/vim-easymotion-zh", config = function ()
+            vim.g.EasyMotion_use_migemo = 1
+        end}, 
+        {"hotoo/pangu.vim"},
 	})
 end

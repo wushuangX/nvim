@@ -1,2 +1,8 @@
 {
+  "languageserver": {
+    "ruff-lsp": {
+      "command": "ruff-lsp",
+      "filetypes": ["python"]
+    }
+  }
 }
