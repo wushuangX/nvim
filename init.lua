@@ -104,6 +104,7 @@ else
 		{
 			"echasnovski/mini.nvim",
 			version = "*",
+            priority = 900,
 			config = function()
 				require("mini.pairs").setup() --自动配对括号
 				require("mini.animate").setup()
