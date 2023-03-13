@@ -31,7 +31,7 @@ else
 	-- 显示左侧图标指示列
 	vim.wo.signcolumn = "yes"
 	-- 右侧参考线，超过表示代码太长了，考虑换行
-	vim.wo.colorcolumn = "80"
+	-- vim.wo.colorcolumn = "80"
 	-- 空格替代tab
 	vim.o.expandtab = true
 	vim.bo.expandtab = true
