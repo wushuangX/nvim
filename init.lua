@@ -718,3 +718,4 @@ else
         {"hotoo/pangu.vim"},
 	})
 end
+
