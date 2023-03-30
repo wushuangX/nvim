@@ -62,6 +62,9 @@ else
 	vim.opt.termguicolors = true
 	-- 永远显示 tabline
 	vim.o.showtabline = 2
+    -- insert模式的快捷键
+    -- 设置inoremap jj <esc>
+    vim.api.nvim_set_keymap('i', 'jj', '<esc>', { noremap = true })
 	-- python虚拟环境设置
 	vim.g.python2_host_prog = "/home/yu/.pyenv/versions/neovim2/bin/python"
 	vim.g.python3_host_prog = "/home/yu/.pyenv/versions/neovim3/bin/python"
@@ -346,6 +349,7 @@ else
 					"coc-pydocstring",
 					"@yaegassy/coc-volar",
 					"@yaegassy/coc-volar-tools",
+                    "@yaegassy/coc-ruff",
 				}
 				-- Some servers have issues with backup files, see #649
 				vim.opt.backup = false
