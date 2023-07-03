@@ -61,7 +61,7 @@ else
     vim.o.termguicolors = true
     vim.opt.termguicolors = true
     -- 永远显示 tabline
-    vim.o.showtabline = 2
+    -- vim.o.showtabline = 2
     -- insert模式的快捷键
     -- 设置inoremap jj <esc>
     vim.api.nvim_set_keymap('i', 'jj', '<esc>', { noremap = true })
@@ -101,8 +101,10 @@ else
         },
         -- 代码片段
         "rafamadriz/friendly-snippets",
-        { "folke/neoconf.nvim",        cmd = "Neoconf" },
+        { "folke/neoconf.nvim",     cmd = "Neoconf" },
         "folke/neodev.nvim",
+        -- wakapi，记录写代码时间
+        "wakatime/vim-wakatime",
         -- 动画插件
         {
             "echasnovski/mini.nvim",
@@ -125,7 +127,38 @@ else
             event = "VeryLazy",
         },
         -- 替代airline的底栏插件
-        { "nvim-lualine/lualine.nvim", opts = { theme = "gruvbox" } },
+        {
+            "nvim-lualine/lualine.nvim",
+            opts = { theme = "gruvbox" },
+        },
+        -- tabline
+        {
+            "kdheepak/tabline.nvim",
+            config = function()
+    require'tabline'.setup {
+      -- Defaults configuration options
+      enable = true,
+      options = {
+      -- If lualine is installed tabline will use separators configured in lualine by default.
+      -- These options can be used to override those settings.
+        section_separators = {'', ''},
+        component_separators = {'', ''},
+        max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
+        show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
+        show_devicons = true, -- this shows devicons in buffer section
+        show_bufnr = false, -- this appends [bufnr] to buffer section,
+        show_filename_only = false, -- shows base filename only instead of relative path in filename
+        modified_icon = "+ ", -- change the default modified icon
+        modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
+        show_tabs_only = false, -- this shows only tabs instead of tabs + buffers
+      }
+    }
+    vim.cmd[[
+      set guioptions-=e " Use showtabline in gui vim
+      set sessionoptions+=tabpages,globals " store tabpages and globals in session
+    ]]
+  end,
+        },
         "lukas-reineke/indent-blankline.nvim",
         -- 开始界面
         {
@@ -752,7 +785,7 @@ else
                     ui = {
                         output_popup_text = "NeoAI",
                         input_popup_text = "Prompt",
-                        width = 30, -- As percentage eg. 30%
+                        width = 30,               -- As percentage eg. 30%
                         output_popup_height = 80, -- As percentage eg. 80%
                     },
                     models = {
