@@ -115,9 +115,13 @@ else
                 require("mini.animate").setup()
                 require("mini.surround").setup()
                 require("mini.comment").setup()
-                require("mini.tabline").setup()
+                require("mini.bracketed").setup()
+                -- require("mini.tabline").setup()
+                require("mini.ai").setup()
                 require("mini.indentscope").setup()
                 require("mini.move").setup()
+                require("mini.jump").setup()
+                require("mini.jump2d").setup()
             end,
         },
         --{ 'echasnovski/mini.pairs', version = "*" },
@@ -700,7 +704,6 @@ else
                 vim.keymap.set("n", "<C-p>", ":call mdip#MarkdownClipboardImage()<CR>")
             end,
         },
-        { "gcmt/wildfire.vim" },
         {
             "folke/todo-comments.nvim",
             dependencies = { "folke/trouble.nvim", "nvim-lua/plenary.nvim" },
