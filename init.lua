@@ -135,29 +135,29 @@ else
         {
             "kdheepak/tabline.nvim",
             config = function()
-    require'tabline'.setup {
-      -- Defaults configuration options
-      enable = true,
-      options = {
-      -- If lualine is installed tabline will use separators configured in lualine by default.
-      -- These options can be used to override those settings.
-        section_separators = {'', ''},
-        component_separators = {'', ''},
-        max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
-        show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
-        show_devicons = true, -- this shows devicons in buffer section
-        show_bufnr = false, -- this appends [bufnr] to buffer section,
-        show_filename_only = false, -- shows base filename only instead of relative path in filename
-        modified_icon = "+ ", -- change the default modified icon
-        modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
-        show_tabs_only = false, -- this shows only tabs instead of tabs + buffers
-      }
-    }
-    vim.cmd[[
+                require 'tabline'.setup {
+                    -- Defaults configuration options
+                    enable = true,
+                    options = {
+                        -- If lualine is installed tabline will use separators configured in lualine by default.
+                        -- These options can be used to override those settings.
+                        section_separators = { '', '' },
+                        component_separators = { '', '' },
+                        max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
+                        show_tabs_always = false,    -- this shows tabs only when there are more than one tab or if the first tab is named
+                        show_devicons = true,        -- this shows devicons in buffer section
+                        show_bufnr = false,          -- this appends [bufnr] to buffer section,
+                        show_filename_only = false,  -- shows base filename only instead of relative path in filename
+                        modified_icon = "+ ",        -- change the default modified icon
+                        modified_italic = false,     -- set to true by default; this determines whether the filename turns italic if modified
+                        show_tabs_only = false,      -- this shows only tabs instead of tabs + buffers
+                    }
+                }
+                vim.cmd [[
       set guioptions-=e " Use showtabline in gui vim
       set sessionoptions+=tabpages,globals " store tabpages and globals in session
     ]]
-  end,
+            end,
         },
         "lukas-reineke/indent-blankline.nvim",
         -- 开始界面
@@ -230,7 +230,6 @@ else
             version = false, -- last release is way too old and doesn't work on Windows
             build = ":TSUpdate",
             event = { "BufReadPost", "BufNewFile" },
-            dependencies = { "p00f/nvim-ts-rainbow" },
             keys = {
                 { "<c-space>", desc = "Increment selection" },
                 { "<bs>",      desc = "Schrink selection",  mode = "x" },
@@ -258,29 +257,27 @@ else
                     "yaml",
                     "toml",
                     "julia",
+                    "rust",
+                    "vue",
                 },
                 incremental_selection = {
                     enable = true,
                     keymaps = {
-                        init_selection = "<C-space>",
-                        node_incremental = "<C-space>",
-                        scope_incremental = "<nop>",
-                        node_decremental = "<bs>",
+                        init_selection = "gnn",
+                        node_incremental = "gNn",
+                        scope_incremental = "gNc",
+                        node_decremental = "gNm",
                     },
-                },
-                rainbow = {
-                    enable = true,
-                    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-                    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-                    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-                    -- colors = {}, -- table of hex strings
-                    -- termcolors = {} -- table of colour name strings
                 },
             },
             ---@param opts TSConfig
             config = function(_, opts)
                 require("nvim-treesitter.configs").setup(opts)
             end,
+        },
+        -- 彩色括号
+        {
+            "HiPhish/rainbow-delimiters.nvim",
         },
         -- 自动切换输入法
         "h-hg/fcitx.nvim",
